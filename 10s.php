@@ -59,12 +59,12 @@ function combinations($x) {
 	return ($x * ($x - 1) / 2);
 }
 
-$nums=5;
-$problems = getRand($nums);
+$nums=4;
+// $problems = getRand($nums);
 echo "<p>";
 $combos = combinations($nums);
 echo "<p>";
-$res = equalTen($problems);
+// $res = equalTen($problems);
 echo "<p>";
 
 ?>
@@ -72,18 +72,44 @@ echo "<p>";
 
 		<h1>10's</h1>
 <!-- 		<p class="rcorners2">7</p> -->
-		<?php foreach ($problems as $problem) {
-			echo "<p class=\"rcorners2\">$problem</p>"; 
-		}?>
+	<div class="form-group">
+		<label for="select1">How many?</label>
+		<select class="form-control" id="select1">
+			<option>3</option>
+			<option>4</option>
+			<option>6</option>
+		</select>
+	</div>
+	<script>$(".form-control").val();</script>
+		<?php 
+			$problems = getRand($nums);
+			foreach ($problems as $problem) {
+				echo "<p class=\"rcorners2\">$problem</p>"; 
+			}
+			?>
+			<span class="nextLine">
+				<?php 
+				$res = equalTen($problems);
+				?>
+			</span>
 		<p></br> 
 		<!-- NEED better display of buttons, own line -->
 		<form method="post" action="10s.php">
 			<input type="hidden" name="results" value="<?php echo serialize($res); ?>">
-			<?php for ($i = 1; $i <= $combos; $i++) {
-				echo '<input type="submit" name="submit" class="btn btn-info" value="' . $i. '">';
-			} ?>
+			
+			<div class="nextLine">
+				<?php 
+					echo "<p>";
+					for ($i = 0; $i <= $combos; $i++) {
+					echo '<input type="submit" name="submit" class="btn btn-info" value="' . $i. '">';
+				} ?>
+			</div>
 		</form>
 		</p>
 	</div>
+	
+	<input type='submit' name='reload' value='Start over' 
+		onClick="header('Location: http://localhost')"/>
+	
 	</body>
 </html>

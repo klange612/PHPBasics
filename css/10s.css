@@ -13,3 +13,7 @@ p.nums-lg {
     height: 100px;
     font-size: 400%;   
 }
+.nextLine {
+	clear: both;
+	display: block;
+}
